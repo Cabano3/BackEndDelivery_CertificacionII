@@ -3,11 +3,13 @@ package com.bano.backend.services.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bano.backend.models.dao.IUser;
 import com.bano.backend.models.entities.User;
 import com.bano.backend.services.interfaces.IUserService;
 
+@Service
 public class UserService implements IUserService{
 	
 	@Autowired

@@ -3,11 +3,13 @@ package com.bano.backend.services.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.bano.backend.models.dao.IProduct;
 import com.bano.backend.models.entities.Product;
 import com.bano.backend.services.interfaces.IProductService;
 
+@Service
 public class ProductService implements IProductService {
 	
 	@Autowired
