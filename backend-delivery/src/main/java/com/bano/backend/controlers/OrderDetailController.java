@@ -14,40 +14,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import com.bano.backend.models.entities.OrderDetail;
+import com.bano.backend.services.interfaces.IOrderDetailService;
 
-import com.bano.backend.models.entities.Product;
-import com.bano.backend.services.interfaces.IProductService;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
-@RequestMapping("/api/product")
-public class ProductController {
-	
+@RequestMapping("/api/orderdetail")
+public class OrderDetailController {
+
 	@Autowired
-	private IProductService service;
+	private IOrderDetailService service;
 
 	@GetMapping("/{id}")
-	private Product retrive(@PathVariable(value="id") Long id) {
+	private OrderDetail retrive(@PathVariable(value="id") Long id) {
 		return service.findById(id);
 	}
 	
 	@GetMapping("")
-	public List<Product> list(){
+	public List<OrderDetail> list(){
 		return service.findAll();
 	}
 	
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Product create(@RequestBody Product product) {
-		service.save(product);
-		return product;
+	public OrderDetail create(@RequestBody OrderDetail orderdetail) {
+		service.save(orderdetail);
+		return orderdetail;
 	}
 	
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Product update(@RequestBody Product product, @PathVariable Long id) {
-		service.save(product);
-		return product;
+	public OrderDetail update(@RequestBody OrderDetail orderdetail, @PathVariable Long id) {
+		service.save(orderdetail);
+		return orderdetail;
 	}
 	
 	@DeleteMapping("/{id}")
@@ -56,3 +56,5 @@ public class ProductController {
 		service.delete(id);
 	}
 }
+
+
