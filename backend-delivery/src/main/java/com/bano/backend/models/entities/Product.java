@@ -55,8 +55,8 @@ public class Product implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Calendar expirationDate;
 	
-	/*@OneToMany(mappedBy="product", fetch= FetchType.LAZY)
-	private List<OrderDetail> orderDetail;*/
+	@OneToMany(mappedBy="product", fetch= FetchType.LAZY)
+	private List<OrderDetail> orderDetail;
 
 	public Product() {
 		super();
