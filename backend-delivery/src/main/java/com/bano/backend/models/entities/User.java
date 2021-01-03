@@ -53,8 +53,8 @@ public class User implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Calendar birth;
 	
-	@OneToMany(mappedBy="user", fetch= FetchType.LAZY)
-	private List<Order> order;
+	/*@OneToMany(mappedBy="user", fetch= FetchType.LAZY)
+	private List<Order> order;*/
 
 	public User() {
 		super();
