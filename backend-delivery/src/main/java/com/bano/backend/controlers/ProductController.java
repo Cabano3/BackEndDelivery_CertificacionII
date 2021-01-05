@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bano.backend.models.entities.Product;
 import com.bano.backend.services.interfaces.IProductService;
+import com.bano.backend.utils.ResponseUtility;
+
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
@@ -54,5 +57,23 @@ public class ProductController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		service.delete(id);
+	}
+	@GetMapping("/search/state/{state}")
+	public List<Product> listByState(@PathVariable String state) {
+		return service.findByState(state);
+	}
+	
+	@GetMapping("/search/name/{name}")	
+	public ResponseEntity<?> listByLastName(@PathVariable String name) {
+		try {
+			List<Product> st = service.searchByName(name);
+			if(st.size() == 0) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not product found");	
+			}
+			return ResponseEntity.ok(st);
+		}
+		catch(Exception ex) {
+			return new ResponseEntity<ResponseUtility>(new ResponseUtility(ex.getMessage(), ex), HttpStatus.BAD_REQUEST);
+		}
 	}
 }
