@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table(name="Products")
 @Entity
 public class Product implements Serializable{
@@ -56,6 +58,7 @@ public class Product implements Serializable{
 	private Calendar expirationDate;
 	
 	@OneToMany(mappedBy="product", fetch= FetchType.LAZY)
+	@JsonIgnore
 	private List<OrderDetail> orderDetail;
 
 	public Product() {
@@ -122,5 +125,14 @@ public class Product implements Serializable{
 	public void setExpirationDate(Calendar expirationDate) {
 		this.expirationDate = expirationDate;
 	}
+
+	public List<OrderDetail> getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(List<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+	
 	
 }

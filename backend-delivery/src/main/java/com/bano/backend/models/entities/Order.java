@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table(name="Orders")
 @Entity
 public class Order implements Serializable{
@@ -47,6 +49,7 @@ public class Order implements Serializable{
 	private double total;
 	
 	@OneToMany(mappedBy="order", fetch= FetchType.LAZY)
+	@JsonIgnore
 	private List<OrderDetail> orderDetail;
 	
 	@JoinColumn(name="fk_user", referencedColumnName="id_user")
@@ -101,6 +104,22 @@ public class Order implements Serializable{
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	public List<OrderDetail> getOrderDetail() {
+		return orderDetail;
+	}
+
+	public void setOrderDetail(List<OrderDetail> orderDetail) {
+		this.orderDetail = orderDetail;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

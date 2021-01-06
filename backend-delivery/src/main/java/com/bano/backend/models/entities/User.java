@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Table(name="Users")
 @Entity
 public class User implements Serializable {
@@ -54,6 +56,7 @@ public class User implements Serializable {
 	private Calendar birth;
 	
 	@OneToMany(mappedBy="user", fetch= FetchType.LAZY)
+	@JsonIgnore
 	private List<Order> order;
 
 	public User() {
@@ -112,4 +115,22 @@ public class User implements Serializable {
 	public void setBirth(Calendar birth) {
 		this.birth = birth;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
+	}
+	
+	
 }

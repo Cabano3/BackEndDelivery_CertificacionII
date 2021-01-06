@@ -68,6 +68,18 @@ private static final long serialVersionUID = 1L;
 	public void setSubtotal(double subtotal) {
 		this.subtotal = subtotal;
 	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 	
 
 	
