@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bano.backend.models.dao.IProduct;
 import com.bano.backend.models.entities.Product;
@@ -16,6 +17,7 @@ public class ProductService implements IProductService {
 	private IProduct dao;
 
 	@Override
+	@Transactional
 	public void save(Product p) {
 		try {
 			dao.save(p);
@@ -26,6 +28,7 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Product findById(Long id) {
 		// TODO Auto-generated method stub
 		return dao.findById(id).get();
@@ -43,9 +46,28 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Product> findAll() {
 		// TODO Auto-generated method stub
 		return (List<Product>) dao.findAll();
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Product> findByState(String status) {		
+		return (List<Product>) dao.findByState(status);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public Product findByName(String criteria) {		
+		return dao.buscarPorNombre(criteria);
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public List<Product> searchByName(String a) {		
+		return dao.findByNameStartingWith(a);
+	}
+
 
 }
